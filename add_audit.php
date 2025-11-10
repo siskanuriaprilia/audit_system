@@ -230,21 +230,24 @@
     <div class="container">
         <a href="index.php" class="btn-back">Kembali ke Dashboard K3</a>
         
-        <div class="k3-header">
-            <h1>⚠️ AUDIT KESELAMATAN & KESEHATAN KERJA (K3)</h1>
-            <p class="subtitle">Sistem Manajemen K3 - Checklist Inspeksi Keselamatan</p>
-            <div class="safety-badge">
-                <span>🛡️</span>
-                <span>Safety First - Zero Accident</span>
-            </div>
-        </div>
-        
-        <div class="info-box">
-            <div class="icon">ℹ️</div>
-            <div>
-                <strong>Petunjuk Pengisian:</strong> Lengkapi seluruh checklist audit K3 dengan teliti. Pastikan semua aspek keselamatan kerja dinilai sesuai standar SMK3.
-            </div>
-        </div>
+       <div class="k3-header">
+    <h1>💻 AUDIT KESELAMATAN & KESEHATAN KERJA (K3) LAB KOMPUTER</h1>
+    <p class="subtitle">Checklist Inspeksi K3 – Laboratorium Komputer & Perangkat Elektronik</p>
+    <div class="safety-badge">
+        <span>🛡️</span>
+        <span>Safety & Clean Lab – Zero Accident, Zero Downtime</span>
+    </div>
+</div>
+
+<div class="info-box">
+    <div class="icon">💡</div>
+    <div>
+        <strong>Petunjuk Pengisian:</strong>  
+        Periksa setiap aspek keselamatan di laboratorium komputer, mulai dari penggunaan APD, kondisi perangkat, hingga kebersihan dan tata letak kabel.  
+        Pilih kategori penilaian yang sesuai (✓ Aman, ⚠️ Perlu Perbaikan, ✗ Tidak Aman).
+    </div>
+</div>
+
         
         <form action="process_audit.php" method="POST" class="audit-form" id="auditForm">
             <!-- Informasi Audit -->
@@ -274,121 +277,139 @@
             </div>
             
             <!-- Checklist K3 -->
-<!-- Checklist K3 -->
-<div class="k3-section">
-    <h3><span class="safety-icon">🦺</span> Checklist Keselamatan Kerja</h3>
+                <!-- Checklist K3 -->
+                <div class="k3-section">
+                    <h3><span class="safety-icon">🦺</span> Checklist Keselamatan Kerja</h3>
+                        <!-- 1. APD Teknis -->
+                <div class="question-group critical">
+                    <label class="question">
+                        1. Apakah teknisi/laboran menggunakan APD dasar saat melakukan perawatan perangkat elektronik (misalnya sarung tangan anti-statis, gelang ESD)?
+                    </label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="apd_teknis" value="Satisfactory" required> <span class="status-safe">✓ Sesuai</span></label>
+                        <label><input type="radio" name="apd_teknis" value="Needs Improvement"> <span class="status-warning">⚠️ Tidak Konsisten</span></label>
+                        <label><input type="radio" name="apd_teknis" value="Unsatisfactory"> <span class="status-danger">✗ Tidak Diterapkan</span></label>
+                    </div>
+                </div>
 
-    <!-- 1. APD -->
-    <div class="question-group critical">
-        <label class="question">1. Alat Pelindung Diri (APD) - Apakah semua pekerja menggunakan APD lengkap?</label>
-        <div class="radio-group">
-            <label><input type="radio" name="apd" value="Satisfactory" required> <span class="status-safe">✓ Aman</span></label>
-            <label><input type="radio" name="apd" value="Needs Improvement"> <span class="status-warning">⚠️ Perlu Perbaikan</span></label>
-            <label><input type="radio" name="apd" value="Unsatisfactory"> <span class="status-danger">✗ Tidak Aman</span></label>
-        </div>
-    </div>
+                <!-- 2. Kondisi Komputer & Perangkat Elektronik -->
+                <div class="question-group critical">
+                    <label class="question">
+                        2. Apakah komputer, server, UPS, dan perangkat jaringan dalam kondisi normal dan tidak menunjukkan tanda overheating atau kerusakan?
+                    </label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="kondisi_komputer" value="Satisfactory" required> <span class="status-safe">✓ Aman</span></label>
+                        <label><input type="radio" name="kondisi_komputer" value="Needs Improvement"> <span class="status-warning">⚠️ Perlu Monitoring</span></label>
+                        <label><input type="radio" name="kondisi_komputer" value="Unsatisfactory"> <span class="status-danger">✗ Tidak Aman</span></label>
+                    </div>
+                </div>
 
-    <!-- 2. Kondisi Mesin -->
-    <div class="question-group critical">
-        <label class="question">2. Kondisi Mesin & Peralatan - Apakah mesin dalam kondisi aman dan terawat?</label>
-        <div class="radio-group">
-            <label><input type="radio" name="mesin" value="Satisfactory" required> <span class="status-safe">✓ Aman</span></label>
-            <label><input type="radio" name="mesin" value="Needs Improvement"> <span class="status-warning">⚠️ Perlu Perbaikan</span></label>
-            <label><input type="radio" name="mesin" value="Unsatisfactory"> <span class="status-danger">✗ Tidak Aman</span></label>
-        </div>
-    </div>
+                <!-- 3. Kebersihan & Penataan Meja Kerja -->
+                <div class="question-group">
+                    <label class="question">
+                        3. Apakah meja kerja, perangkat input, dan area sekitar komputer bersih dan bebas debu berlebih?
+                    </label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="kebersihan_meja" value="Satisfactory" required> <span class="status-safe">✓ Baik</span></label>
+                        <label><input type="radio" name="kebersihan_meja" value="Needs Improvement"> <span class="status-warning">⚠️ Perlu Dibersihkan</span></label>
+                        <label><input type="radio" name="kebersihan_meja" value="Unsatisfactory"> <span class="status-danger">✗ Buruk</span></label>
+                    </div>
+                </div>
 
-    <!-- 3. Kebersihan Area -->
-    <div class="question-group">
-        <label class="question">3. Kebersihan Area - Apakah area kerja bersih dan tertata?</label>
-        <div class="radio-group">
-            <label><input type="radio" name="kebersihan" value="Satisfactory" required> <span class="status-safe">✓ Baik</span></label>
-            <label><input type="radio" name="kebersihan" value="Needs Improvement"> <span class="status-warning">⚠️ Kurang Rapi</span></label>
-            <label><input type="radio" name="kebersihan" value="Unsatisfactory"> <span class="status-danger">✗ Buruk</span></label>
-        </div>
-    </div>
+                <!-- 4. Rambu & Informasi Keselamatan -->
+                <div class="question-group">
+                    <label class="question">
+                        4. Apakah terdapat rambu prosedur evakuasi, instruksi penggunaan APAR, dan larangan makan/minum di area lab?
+                    </label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="rambu_k3" value="Satisfactory" required> <span class="status-safe">✓ Lengkap</span></label>
+                        <label><input type="radio" name="rambu_k3" value="Needs Improvement"> <span class="status-warning">⚠️ Sebagian</span></label>
+                        <label><input type="radio" name="rambu_k3" value="Unsatisfactory"> <span class="status-danger">✗ Tidak Ada</span></label>
+                    </div>
+                </div>
 
-    <!-- 4. Rambu K3 -->
-    <div class="question-group">
-        <label class="question">4. Rambu & Signage - Apakah rambu K3 jelas dan lengkap?</label>
-        <div class="radio-group">
-            <label><input type="radio" name="rambu" value="Satisfactory" required> <span class="status-safe">✓ Lengkap</span></label>
-            <label><input type="radio" name="rambu" value="Needs Improvement"> <span class="status-warning">⚠️ Perlu Diperbaiki</span></label>
-            <label><input type="radio" name="rambu" value="Unsatisfactory"> <span class="status-danger">✗ Tidak Lengkap</span></label>
-        </div>
-    </div>
+                <!-- 5. APAR & Penanganan Kebakaran Elektronik -->
+                <div class="question-group critical">
+                    <label class="question">
+                        5. Apakah APAR tipe CO₂ atau dry chemical tersedia dan masih dalam masa inspeksi berlaku?
+                    </label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="apar_elektronik" value="Satisfactory" required> <span class="status-safe">✓ Siap</span></label>
+                        <label><input type="radio" name="apar_elektronik" value="Needs Improvement"> <span class="status-warning">⚠️ Perlu Maintenance</span></label>
+                        <label><input type="radio" name="apar_elektronik" value="Unsatisfactory"> <span class="status-danger">✗ Tidak Siap</span></label>
+                    </div>
+                </div>
 
-    <!-- 5. Proteksi Kebakaran -->
-    <div class="question-group critical">
-        <label class="question">5. Proteksi Kebakaran - Apakah APAR, hydrant, dan alarm berfungsi baik?</label>
-        <div class="radio-group">
-            <label><input type="radio" name="proteksi" value="Satisfactory" required> <span class="status-safe">✓ Siap</span></label>
-            <label><input type="radio" name="proteksi" value="Needs Improvement"> <span class="status-warning">⚠️ Maintenance</span></label>
-            <label><input type="radio" name="proteksi" value="Unsatisfactory"> <span class="status-danger">✗ Tidak Berfungsi</span></label>
-        </div>
-    </div>
+                <!-- 6. Pencahayaan Ruangan -->
+                <div class="question-group">
+                    <label class="question">
+                        6. Apakah pencahayaan ruangan cukup, tidak menyilaukan, dan tidak menimbulkan ketegangan mata?
+                    </label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="pencahayaan" value="Satisfactory" required> <span class="status-safe">✓ Baik</span></label>
+                        <label><input type="radio" name="pencahayaan" value="Needs Improvement"> <span class="status-warning">⚠️ Kurang</span></label>
+                        <label><input type="radio" name="pencahayaan" value="Unsatisfactory"> <span class="status-danger">✗ Buruk</span></label>
+                    </div>
+                </div>
 
-    <!-- 6. Pencahayaan -->
-    <div class="question-group">
-        <label class="question">6. Pencahayaan - Apakah pencahayaan cukup dan tidak berbahaya bagi penglihatan?</label>
-        <div class="radio-group">
-            <label><input type="radio" name="pencahayaan" value="Satisfactory" required> <span class="status-safe">✓ Baik</span></label>
-            <label><input type="radio" name="pencahayaan" value="Needs Improvement"> <span class="status-warning">⚠️ Kurang Terang</span></label>
-            <label><input type="radio" name="pencahayaan" value="Unsatisfactory"> <span class="status-danger">✗ Buruk</span></label>
-        </div>
-    </div>
+                <!-- 7. Ventilasi & Sirkulasi Udara -->
+                <div class="question-group">
+                    <label class="question">
+                        7. Apakah sirkulasi udara/AC menjaga ruangan tetap sejuk agar komputer tidak overheating?
+                    </label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="ventilasi" value="Satisfactory" required> <span class="status-safe">✓ Lancar</span></label>
+                        <label><input type="radio" name="ventilasi" value="Needs Improvement"> <span class="status-warning">⚠️ Kurang Lancar</span></label>
+                        <label><input type="radio" name="ventilasi" value="Unsatisfactory"> <span class="status-danger">✗ Tidak Ada</span></label>
+                    </div>
+                </div>
 
-    <!-- 7. Ventilasi -->
-    <div class="question-group">
-        <label class="question">7. Ventilasi - Apakah sirkulasi udara di area kerja baik?</label>
-        <div class="radio-group">
-            <label><input type="radio" name="ventilasi" value="Satisfactory" required> <span class="status-safe">✓ Lancar</span></label>
-            <label><input type="radio" name="ventilasi" value="Needs Improvement"> <span class="status-warning">⚠️ Kurang Lancar</span></label>
-            <label><input type="radio" name="ventilasi" value="Unsatisfactory"> <span class="status-danger">✗ Tidak Ada</span></label>
-        </div>
-    </div>
+                <!-- 8. Penataan Kabel & Stop Kontak -->
+                <div class="question-group">
+                    <label class="question">
+                        8. Apakah kabel data dan kabel listrik tertata, tidak melintang di lantai, dan beban stop kontak tidak berlebih?
+                    </label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="kabel" value="Satisfactory" required> <span class="status-safe">✓ Aman</span></label>
+                        <label><input type="radio" name="kabel" value="Needs Improvement"> <span class="status-warning">⚠️ Perlu Perbaikan</span></label>
+                        <label><input type="radio" name="kabel" value="Unsatisfactory"> <span class="status-danger">✗ Berbahaya</span></label>
+                    </div>
+                </div>
 
-    <!-- 8. Posisi Kabel -->
-    <div class="question-group">
-        <label class="question">8. Penataan Kabel & Listrik - Apakah kabel listrik aman dan tertata rapi?</label>
-        <div class="radio-group">
-            <label><input type="radio" name="kabel" value="Satisfactory" required> <span class="status-safe">✓ Aman</span></label>
-            <label><input type="radio" name="kabel" value="Needs Improvement"> <span class="status-warning">⚠️ Perlu Diperbaiki</span></label>
-            <label><input type="radio" name="kabel" value="Unsatisfactory"> <span class="status-danger">✗ Berbahaya</span></label>
-        </div>
-    </div>
+                <!-- 9. Jalur Evakuasi & Exit Sign -->
+                <div class="question-group">
+                    <label class="question">
+                        9. Apakah jalur evakuasi jelas, tidak terhalang barang, dan terdapat tanda exit glow-in-the-dark?
+                    </label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="evakuasi" value="Satisfactory" required> <span class="status-safe">✓ Siap Digunakan</span></label>
+                        <label><input type="radio" name="evakuasi" value="Needs Improvement"> <span class="status-warning">⚠️ Sebagian Terhalang</span></label>
+                        <label><input type="radio" name="evakuasi" value="Unsatisfactory"> <span class="status-danger">✗ Tidak Terlihat</span></label>
+                    </div>
+                </div>
 
-    <!-- 9. Jalur Evakuasi -->
-    <div class="question-group">
-        <label class="question">9. Jalur Evakuasi - Apakah jalur evakuasi bebas hambatan dan terlihat jelas?</label>
-        <div class="radio-group">
-            <label><input type="radio" name="evakuasi" value="Satisfactory" required> <span class="status-safe">✓ Siap Digunakan</span></label>
-            <label><input type="radio" name="evakuasi" value="Needs Improvement"> <span class="status-warning">⚠️ Sebagian Terhalang</span></label>
-            <label><input type="radio" name="evakuasi" value="Unsatisfactory"> <span class="status-danger">✗ Tidak Terlihat</span></label>
-        </div>
-    </div>
-
-    <!-- 10. Pelatihan K3 -->
-    <div class="question-group">
-        <label class="question">10. Pelatihan K3 - Apakah pekerja mendapatkan pelatihan keselamatan kerja secara rutin?</label>
-        <div class="radio-group">
-            <label><input type="radio" name="pelatihan" value="Satisfactory" required> <span class="status-safe">✓ Rutin</span></label>
-            <label><input type="radio" name="pelatihan" value="Needs Improvement"> <span class="status-warning">⚠️ Tidak Semua</span></label>
-            <label><input type="radio" name="pelatihan" value="Unsatisfactory"> <span class="status-danger">✗ Belum Pernah</span></label>
-        </div>
-    </div>
-</div>            
+                <!-- 10. Sosialisasi & Pelatihan K3 Lab -->
+                <div class="question-group">
+                    <label class="question">
+                        10. Apakah pengguna lab mendapatkan briefing keselamatan (mis. SOP penggunaan lab, prosedur kebakaran)?
+                    </label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="pelatihan_k3" value="Satisfactory" required> <span class="status-safe">✓ Rutin</span></label>
+                        <label><input type="radio" name="pelatihan_k3" value="Needs Improvement"> <span class="status-warning">⚠️ Tidak Semua</span></label>
+                        <label><input type="radio" name="pelatihan_k3" value="Unsatisfactory"> <span class="status-danger">✗ Belum Pernah</span></label>
+                    </div>
+                </div>
+=
             <!-- Rekomendasi -->
             <div class="k3-section">
                 <h3><span class="safety-icon">📝</span> Rekomendasi Perbaikan & Tindak Lanjut</h3>
                 <div class="form-group full-width">
                     <label for="recommendations">💡 Catatan, Temuan, dan Rekomendasi Perbaikan</label>
                     <textarea id="recommendations" name="recommendations" rows="5" placeholder="Tuliskan temuan pelanggaran K3, potensi bahaya, dan rekomendasi perbaikan yang perlu dilakukan...
-
-Contoh:
-- Ditemukan 2 pekerja tidak menggunakan safety helmet
-- APAR di area welding sudah expired (bulan lalu)
-- Rekomendasi: Penggantian APAR segera dan briefing penggunaan APD" required></textarea>
+                Contoh:
+                - Ditemukan 2 pekerja tidak menggunakan safety helmet
+                - APAR di area welding sudah expired (bulan lalu)
+                - Rekomendasi: Penggantian APAR segera dan briefing penggunaan APD" required></textarea>
                 </div>
             </div>
             

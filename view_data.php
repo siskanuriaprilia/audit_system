@@ -1,6 +1,6 @@
 <?php
 // view_data.php
-// Halaman untuk melihat semua data audit K3
+// Halaman untuk melihat semua data audit K3 Lab Komputer
 
 require_once 'config/database.php';
 
@@ -14,7 +14,7 @@ $audits = $stmt->fetchAll();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Audit K3 - Sistem Manajemen Keselamatan & Kesehatan Kerja</title>
+    <title>Data Audit K3 Lab Komputer - Sistem Manajemen Keselamatan & Kesehatan Kerja</title>
     <link rel="stylesheet" href="css/style.css">
     <style>
         @keyframes safety-pulse {
@@ -40,6 +40,15 @@ $audits = $stmt->fetchAll();
             animation: slideDown 0.6s ease-out;
         }
         
+        .page-header::before {
+            content: '💻📊';
+            position: absolute;
+            font-size: 150px;
+            opacity: 0.1;
+            top: -20px;
+            right: -20px;
+            animation: safety-pulse 3s ease-in-out infinite;
+        }
         
         @keyframes slideDown {
             from {
@@ -67,7 +76,6 @@ $audits = $stmt->fetchAll();
             z-index: 1;
         }
         
-        /* Safety Badge - BARU */
         .safety-badge {
             display: inline-flex;
             align-items: center;
@@ -91,6 +99,7 @@ $audits = $stmt->fetchAll();
             font-weight: bold;
             display: inline-block;
             z-index: 1000;
+            margin-bottom: 20px;
         }
 
         .btn-back:hover {
@@ -274,10 +283,13 @@ $audits = $stmt->fetchAll();
             box-shadow: 0 2px 8px rgba(220, 38, 38, 0.2);
         }
         
+        /* FIXED: Action Buttons Styling */
         .action-buttons {
             display: flex;
             gap: 8px;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
+            align-items: center;
+            justify-content: center;
         }
         
         .btn-action {
@@ -285,34 +297,45 @@ $audits = $stmt->fetchAll();
             border-radius: 8px;
             border: none;
             cursor: pointer;
-            font-size: 0.9em;
-            font-weight: 500;
+            font-size: 0.85em;
+            font-weight: 600;
             transition: all 0.3s ease;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 5px;
+            white-space: nowrap;
+            min-width: 80px;
         }
         
         .btn-view {
             background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
             color: white;
+            box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
         }
         
         .btn-view:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.5);
         }
         
         .btn-delete {
             background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
             color: white;
+            box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
         }
         
         .btn-delete:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.5);
         }
+        
+        /* Icon in buttons */
+        .btn-action::before {
+            font-size: 1.1em;
+        }
+        
         
         .no-data {
             text-align: center;
@@ -487,6 +510,15 @@ $audits = $stmt->fetchAll();
                 align-items: stretch;
             }
             
+            .action-buttons {
+                flex-direction: column;
+                gap: 5px;
+            }
+            
+            .btn-action {
+                width: 100%;
+            }
+            
             .detail-item {
                 grid-template-columns: 1fr;
                 gap: 8px;
@@ -505,28 +537,28 @@ $audits = $stmt->fetchAll();
         <a href="index.php" class="btn-back">Kembali ke Dashboard</a>
         
         <div class="page-header">
-            <h1>📊 Data Audit K3</h1>
-            <p>Riwayat Inspeksi Keselamatan & Kesehatan Kerja</p>
+            <h1>💻📊 Data Audit K3 Lab Komputer</h1>
+            <p>Riwayat Inspeksi Keselamatan Lab Komputer & Perangkat Elektronik</p>
             <div class="safety-badge">
                 <span>🛡️</span>
-                <span>Safety Data Management</span>
+                <span>Lab Safety Data Management - Clean & Safe Lab</span>
             </div>
         </div>
         
         <?php if (isset($_GET['success'])): ?>
         <div class="alert alert-success">
-            ✓ Data audit berhasil disimpan!
+            ✓ Data audit lab komputer berhasil disimpan!
         </div>
         <?php endif; ?>
         
         <?php if (isset($_GET['deleted'])): ?>
         <div class="alert alert-success">
-            ✓ Data audit berhasil dihapus!
+            ✓ Data audit lab komputer berhasil dihapus!
         </div>
         <?php endif; ?>
         
         <div class="table-actions">
-            <span class="data-count">📋 Total Data: <?= count($audits) ?></span>
+            <span class="data-count">💻 Total Data Audit Lab: <?= count($audits) ?></span>
         </div>
         
         <?php if (count($audits) > 0): ?>
@@ -537,10 +569,10 @@ $audits = $stmt->fetchAll();
                         <th>No</th>
                         <th>Tanggal Audit</th>
                         <th>Auditor</th>
-                        <th>Area/Lokasi</th>
-                        <th>Versi</th>
+                        <th>Lokasi Lab</th>
+                        <th>Kode Audit</th>
                         <th>Status Keselamatan</th>
-                        <th>Aksi</th>
+                        <th style="text-align: center;">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -559,11 +591,13 @@ $audits = $stmt->fetchAll();
                                 <?= $audit['overall_result'] ?>
                             </span>
                         </td>
-                        <td class="action-buttons">
-                            <button onclick="viewDetail(<?= $audit['id'] ?>)" class="btn-action btn-view">Detail</button>
-                            <a href="delete_audit.php?id=<?= $audit['id'] ?>" 
-                               onclick="return confirm('Yakin ingin menghapus data audit ini?')"
-                               class="btn-action btn-delete">Hapus</a>
+                        <td>
+                            <div class="action-buttons">
+                                <button onclick="viewDetail(<?= $audit['id'] ?>)" class="btn-action btn-view">Detail</button>
+                                <a href="delete_audit.php?id=<?= $audit['id'] ?>" 
+                                   onclick="return confirm('⚠️ Yakin ingin menghapus data audit lab ini?\n\nLokasi: <?= htmlspecialchars($audit['product_name']) ?>\nKode: <?= htmlspecialchars($audit['version']) ?>')"
+                                   class="btn-action btn-delete">Hapus</a>
+                            </div>
                         </td>
                     </tr>
                     <?php endforeach; ?>
@@ -572,7 +606,7 @@ $audits = $stmt->fetchAll();
         </div>
         <?php else: ?>
         <div class="no-data">
-            <p>📋 Belum ada data audit K3. <a href="add_audit.php">Tambah audit pertama</a></p>
+            <p>💻 Belum ada data audit K3 Lab Komputer. <a href="add_audit.php">Tambah audit lab pertama</a></p>
         </div>
         <?php endif; ?>
     </div>
@@ -581,7 +615,7 @@ $audits = $stmt->fetchAll();
     <div id="detailModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
-            <h2>📋 Detail Audit K3</h2>
+            <h2>💻 Detail Audit K3 Lab Komputer</h2>
             <div id="detailContent"></div>
         </div>
     </div>
@@ -604,28 +638,33 @@ $audits = $stmt->fetchAll();
                                 <span>${audit.auditor}</span>
                             </div>
                             <div class="detail-item">
-                                <strong>Area/Lokasi:</strong>
+                                <strong>Lokasi Lab:</strong>
                                 <span>${audit.product_name}</span>
                             </div>
                             <div class="detail-item">
-                                <strong>Versi Audit:</strong>
+                                <strong>Kode Audit:</strong>
                                 <span>${audit.version}</span>
                             </div>
                             <div class="detail-section">
-                                <h3>🎯 Hasil Inspeksi K3:</h3>
+                                <h3>🎯 Hasil Inspeksi K3 Lab Komputer:</h3>
                                 <ul>
-                                    <li><span>Penampilan & Kemasan APD</span> <strong>${audit.appearance_packaging}</strong></li>
-                                    <li><span>Fungsi Peralatan</span> <strong>${audit.product_function}</strong></li>
-                                    <li><span>Kualitas Material</span> <strong>${audit.material_quality}</strong></li>
-                                    <li><span>Dimensi & Spesifikasi</span> <strong>${audit.dimensions_specs}</strong></li>
-                                    <li><span>Kepatuhan Dimensi</span> <strong>${audit.dimensions_compliance}</strong></li>
-                                    <li><span>Status Keselamatan</span> <strong>${audit.overall_result}</strong></li>
+                                    <li><span>💼 APD Teknis (ESD, Anti-Statis)</span> <strong>${audit.apd_teknis || '-'}</strong></li>
+                                    <li><span>💻 Kondisi Komputer & Perangkat</span> <strong>${audit.kondisi_komputer || '-'}</strong></li>
+                                    <li><span>🧹 Kebersihan Meja Kerja</span> <strong>${audit.kebersihan_meja || '-'}</strong></li>
+                                    <li><span>⚠️ Rambu & Informasi K3</span> <strong>${audit.rambu_k3 || '-'}</strong></li>
+                                    <li><span>🧯 APAR & Proteksi Kebakaran</span> <strong>${audit.apar_elektronik || '-'}</strong></li>
+                                    <li><span>💡 Pencahayaan Ruangan</span> <strong>${audit.pencahayaan || '-'}</strong></li>
+                                    <li><span>🌬️ Ventilasi & Sirkulasi Udara</span> <strong>${audit.ventilasi || '-'}</strong></li>
+                                    <li><span>🔌 Penataan Kabel & Stop Kontak</span> <strong>${audit.kabel || '-'}</strong></li>
+                                    <li><span>🚪 Jalur Evakuasi & Exit Sign</span> <strong>${audit.evakuasi || '-'}</strong></li>
+                                    <li><span>📚 Sosialisasi & Pelatihan K3</span> <strong>${audit.pelatihan_k3 || '-'}</strong></li>
+                                    <li style="border-top: 2px solid #dc2626; margin-top: 10px; padding-top: 15px;"><span><strong>📊 Status Keselamatan Lab</strong></span> <strong style="font-size: 1.1em;">${audit.overall_result}</strong></li>
                                 </ul>
                             </div>
                             ${audit.recommendations ? `
                             <div class="detail-section">
-                                <h3>💡 Rekomendasi Perbaikan:</h3>
-                                <p>${audit.recommendations}</p>
+                                <h3>💡 Rekomendasi Perbaikan Lab:</h3>
+                                <p style="white-space: pre-line;">${audit.recommendations}</p>
                             </div>
                             ` : ''}
                             <div class="detail-signatures">
@@ -656,6 +695,13 @@ $audits = $stmt->fetchAll();
             modal.style.display = 'none';
         }
     }
+    
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            closeModal();
+        }
+    });
     
     // Add entrance animation to table rows
     document.addEventListener('DOMContentLoaded', function() {

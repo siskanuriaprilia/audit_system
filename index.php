@@ -1,13 +1,13 @@
 <?php
 // index.php
-// Dashboard Sistem Manajemen K3
+// Dashboard Sistem Manajemen K3 Lab Komputer
 ?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard K3 - Sistem Manajemen Keselamatan & Kesehatan Kerja</title>
+    <title>Dashboard K3 Lab Komputer - Sistem Manajemen Keselamatan & Kesehatan Kerja</title>
     <link rel="stylesheet" href="css/style.css">
     <style>
         .k3-dashboard-header {
@@ -34,16 +34,7 @@
             }
         }
         
-        .k3-dashboard-header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
-            animation: rotate 25s linear infinite;
-        }
+       
         
         @keyframes rotate {
             from { transform: rotate(0deg); }
@@ -297,20 +288,20 @@
 <body>
     <div class="container">
         <div class="k3-dashboard-header">
-            <h1>🛡️ SISTEM MANAJEMEN K3</h1>
-            <p class="tagline">Keselamatan dan Kesehatan Kerja - Safety Management System</p>
+            <h1>💻 SISTEM MANAJEMEN K3 LAB KOMPUTER</h1>
+            <p class="tagline">Keselamatan & Kesehatan Kerja - Laboratorium Komputer & Perangkat Elektronik</p>
             <div class="safety-stats">
                 <div class="safety-stat-item">
                     <span class="number">0</span>
-                    <span class="label">Hari Tanpa Kecelakaan</span>
+                    <span class="label">Hari Tanpa Insiden</span>
                 </div>
                 <div class="safety-stat-item">
                     <span class="number">100%</span>
-                    <span class="label">Target Keselamatan</span>
+                    <span class="label">Target Keselamatan Lab</span>
                 </div>
                 <div class="safety-stat-item">
                     <span class="number">24/7</span>
-                    <span class="label">Monitoring</span>
+                    <span class="label">Monitoring Lab</span>
                 </div>
             </div>
         </div>
@@ -318,63 +309,65 @@
         <div class="emergency-banner">
             <div class="icon">⚠️</div>
             <div class="content">
-                <h4>Nomor Darurat K3</h4>
-                <p><strong>Emergency Response Team:</strong> 0800-K3-EMERGENCY | Internal: 911</p>
+                <h4>Nomor Darurat Lab Komputer</h4>
+                <p><strong>IT Support & Emergency:</strong> 0800-LAB-EMERGENCY | Internal: 119 | Helpdesk: ext.333</p>
             </div>
         </div>
         
         <div class="menu-grid">
             <a href="add_audit.php" class="menu-card danger">
                 <span class="menu-icon">📋</span>
-                <h3>Audit K3 Baru</h3>
-                <p>Lakukan inspeksi dan audit keselamatan kerja untuk area/lokasi baru. Checklist lengkap sesuai standar SMK3.</p>
+                <h3>Audit K3 Lab Baru</h3>
+                <p>Lakukan inspeksi keselamatan lab komputer: APD teknis, kondisi perangkat, penataan kabel, dan sistem proteksi kebakaran elektronik.</p>
                 <span class="arrow">Mulai Audit →</span>
             </a>
             
             <a href="view_data.php" class="menu-card success">
                 <span class="menu-icon">📊</span>
-                <h3>Data Audit K3</h3>
-                <p>Lihat riwayat audit keselamatan, temuan pelanggaran, dan status tindak lanjut perbaikan.</p>
+                <h3>Data Audit K3 Lab</h3>
+                <p>Lihat riwayat audit keselamatan lab komputer, temuan pelanggaran K3, dan status tindak lanjut perbaikan.</p>
                 <span class="arrow">Lihat Data →</span>
             </a>
             
             <a href="statistics.php" class="menu-card info">
                 <span class="menu-icon">📈</span>
-                <h3>Statistik & Laporan</h3>
-                <p>Dashboard analitik keselamatan kerja, trend pelanggaran, dan performa K3 perusahaan.</p>
+                <h3>Statistik & Laporan Lab</h3>
+                <p>Dashboard analitik keselamatan lab komputer, trend pelanggaran K3, dan performa keselamatan laboratorium.</p>
                 <span class="arrow">Lihat Statistik →</span>
             </a>
         </div>
         
         <div class="info-panels">
             <div class="info-panel">
-                <h4>🎯 Tujuan Sistem K3</h4>
+                <h4>🎯 Tujuan K3 Lab Komputer</h4>
                 <ul>
-                    <li>Mencegah kecelakaan kerja dan penyakit akibat kerja</li>
-                    <li>Menciptakan lingkungan kerja yang aman dan sehat</li>
-                    <li>Meningkatkan produktivitas melalui keselamatan</li>
-                    <li>Memastikan kepatuhan terhadap regulasi K3</li>
+                    <li>Mencegah insiden kelistrikan dan overheating perangkat</li>
+                    <li>Menciptakan lingkungan lab yang aman dan ergonomis</li>
+                    <li>Meningkatkan produktivitas melalui keselamatan kerja</li>
+                    <li>Memastikan kepatuhan SOP penggunaan lab komputer</li>
                 </ul>
             </div>
             
             <div class="info-panel">
-                <h4>✅ Area Audit K3</h4>
+                <h4>✅ Area Audit K3 Lab Komputer</h4>
                 <ul>
-                    <li>Penggunaan Alat Pelindung Diri (APD)</li>
-                    <li>Kondisi mesin dan peralatan kerja</li>
-                    <li>Kebersihan dan kerapihan area kerja</li>
-                    <li>Sistem proteksi kebakaran dan emergency</li>
-                    <li>Rambu keselamatan dan signage</li>
+                    <li>Penggunaan APD teknis (sarung tangan anti-statis, ESD)</li>
+                    <li>Kondisi komputer, server, UPS, dan perangkat jaringan</li>
+                    <li>Kebersihan meja kerja dan area lab</li>
+                    <li>Penataan kabel listrik dan data (cable management)</li>
+                    <li>Sistem proteksi kebakaran (APAR CO₂/dry chemical)</li>
+                    <li>Pencahayaan, ventilasi, dan jalur evakuasi</li>
                 </ul>
             </div>
             
             <div class="info-panel">
-                <h4>📚 Regulasi & Standar</h4>
+                <h4>📚 Standar & Regulasi Lab</h4>
                 <ul>
                     <li>UU No. 1 Tahun 1970 tentang Keselamatan Kerja</li>
                     <li>PP No. 50 Tahun 2012 tentang SMK3</li>
-                    <li>Permenaker No. 5 Tahun 1996</li>
-                    <li>ISO 45001:2018 - OH&S Management</li>
+                    <li>Permenaker tentang Keselamatan Instalasi Listrik</li>
+                    <li>ISO/IEC 17025 - Kompetensi Lab Pengujian</li>
+                    <li>NFPA 75 - Protection of IT Equipment</li>
                 </ul>
             </div>
         </div>

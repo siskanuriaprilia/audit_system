@@ -1,6 +1,6 @@
 <?php
 // statistics.php
-// Halaman untuk menampilkan statistik audit K3
+// Halaman untuk menampilkan statistik audit K3 Lab Komputer
 
 require_once 'config/database.php';
 
@@ -10,22 +10,29 @@ $total = $pdo->query("SELECT COUNT(*) FROM product_audits")->fetchColumn();
 // Statistik berdasarkan overall result
 $stats_sql = "SELECT overall_result, COUNT(*) as count 
               FROM product_audits 
+              WHERE overall_result IS NOT NULL
               GROUP BY overall_result";
 $stats = $pdo->query($stats_sql)->fetchAll();
 
-// Statistik per kategori
+// Statistik per kategori K3 Lab Komputer
 $categories = [
-    'appearance_packaging' => 'Penampilan & Kemasan APD',
-    'product_function' => 'Fungsi Peralatan',
-    'material_quality' => 'Kualitas Material',
-    'dimensions_specs' => 'Dimensi & Spesifikasi',
-    'dimensions_compliance' => 'Kepatuhan Dimensi'
+    'apd_teknis' => 'APD Teknis (ESD, Anti-Statis)',
+    'kondisi_komputer' => 'Kondisi Komputer & Perangkat',
+    'kebersihan_meja' => 'Kebersihan Meja Kerja',
+    'rambu_k3' => 'Rambu & Informasi K3',
+    'apar_elektronik' => 'APAR & Proteksi Kebakaran',
+    'pencahayaan' => 'Pencahayaan Ruangan',
+    'ventilasi' => 'Ventilasi & Sirkulasi Udara',
+    'kabel' => 'Penataan Kabel & Stop Kontak',
+    'evakuasi' => 'Jalur Evakuasi & Exit Sign',
+    'pelatihan_k3' => 'Sosialisasi & Pelatihan K3'
 ];
 
 $category_stats = [];
 foreach ($categories as $key => $label) {
     $sql = "SELECT $key as result, COUNT(*) as count 
             FROM product_audits 
+            WHERE $key IS NOT NULL
             GROUP BY $key";
     $category_stats[$key] = [
         'label' => $label,
@@ -42,10 +49,10 @@ $recent_audits = $pdo->query($recent_sql)->fetchAll();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Statistik K3 - Sistem Manajemen Keselamatan & Kesehatan Kerja</title>
+    <title>Statistik K3 Lab - Sistem Manajemen Keselamatan & Kesehatan Kerja</title>
     <link rel="stylesheet" href="css/style.css">
     <style>
-        /* K3 Safety Theme Animations - SAMA SEPERTI add_audit.php */
+        /* K3 Safety Theme Animations */
         @keyframes safety-pulse {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.05); }
@@ -69,7 +76,6 @@ $recent_audits = $pdo->query($recent_sql)->fetchAll();
             animation: slideDown 0.6s ease-out;
         }
         
-        /* Animasi icon background yang berputar - BARU */
         .page-header::before {
             content: '📈';
             position: absolute;
@@ -106,7 +112,6 @@ $recent_audits = $pdo->query($recent_sql)->fetchAll();
             z-index: 1;
         }
         
-        /* Safety Badge - BARU */
         .safety-badge {
             display: inline-flex;
             align-items: center;
@@ -130,6 +135,7 @@ $recent_audits = $pdo->query($recent_sql)->fetchAll();
             font-weight: bold;
             display: inline-block;
             z-index: 1000;
+            margin-bottom: 20px;
         }
 
         .btn-back:hover {
@@ -270,6 +276,11 @@ $recent_audits = $pdo->query($recent_sql)->fetchAll();
         .chart-section:nth-child(4) { animation-delay: 0.3s; }
         .chart-section:nth-child(5) { animation-delay: 0.4s; }
         .chart-section:nth-child(6) { animation-delay: 0.5s; }
+        .chart-section:nth-child(7) { animation-delay: 0.6s; }
+        .chart-section:nth-child(8) { animation-delay: 0.7s; }
+        .chart-section:nth-child(9) { animation-delay: 0.8s; }
+        .chart-section:nth-child(10) { animation-delay: 0.9s; }
+        .chart-section:nth-child(11) { animation-delay: 1.0s; }
         
         @keyframes slideInLeft {
             from {
@@ -474,11 +485,11 @@ $recent_audits = $pdo->query($recent_sql)->fetchAll();
         <a href="index.php" class="btn-back">Kembali ke Dashboard</a>
         
         <div class="page-header">
-            <h1>📈 Statistik & Analitik K3</h1>
-            <p>Dashboard Performa Keselamatan & Kesehatan Kerja</p>
+            <h1>💻📈 Statistik & Analitik K3 Lab Komputer</h1>
+            <p>Dashboard Performa Keselamatan Lab Komputer & Perangkat Elektronik</p>
             <div class="safety-badge">
                 <span>🛡️</span>
-                <span>Safety Monitoring - Zero Accident Goal</span>
+                <span>Safety Monitoring - Clean Lab, Zero Accident</span>
             </div>
         </div>
         
@@ -486,7 +497,7 @@ $recent_audits = $pdo->query($recent_sql)->fetchAll();
             <div class="stat-card">
                 <div class="stat-icon">📋</div>
                 <div class="stat-info">
-                    <h3>Total Audit</h3>
+                    <h3>Total Audit Lab</h3>
                     <p class="stat-number"><?= $total ?></p>
                 </div>
             </div>
@@ -514,7 +525,7 @@ $recent_audits = $pdo->query($recent_sql)->fetchAll();
             <div class="stat-card stat-success">
                 <div class="stat-icon">✅</div>
                 <div class="stat-info">
-                    <h3>Aman (Satisfactory)</h3>
+                    <h3>Lab Aman</h3>
                     <p class="stat-number"><?= $satisfactory ?></p>
                 </div>
             </div>
@@ -537,11 +548,12 @@ $recent_audits = $pdo->query($recent_sql)->fetchAll();
         </div>
         
         <div class="stats-charts">
-            <h2>📊 Statistik Per Kategori K3</h2>
+            <h2>📊 Statistik Per Aspek K3 Lab Komputer</h2>
             
             <?php foreach ($category_stats as $key => $category): ?>
+            <?php if (!empty($category['data'])): ?>
             <div class="chart-section">
-                <h3>🎯 <?= $category['label'] ?></h3>
+                <h3>💻 <?= $category['label'] ?></h3>
                 <div class="bar-chart">
                     <?php 
                     $total_cat = array_sum(array_column($category['data'], 'count'));
@@ -560,16 +572,18 @@ $recent_audits = $pdo->query($recent_sql)->fetchAll();
                     <?php endforeach; ?>
                 </div>
             </div>
+            <?php endif; ?>
             <?php endforeach; ?>
         </div>
         
+        <?php if (count($recent_audits) > 0): ?>
         <div class="recent-audits">
-            <h2>🕐 5 Audit Terbaru</h2>
+            <h2>🕐 5 Audit Lab Terbaru</h2>
             <table class="data-table">
                 <thead>
                     <tr>
                         <th>Tanggal</th>
-                        <th>Area/Lokasi</th>
+                        <th>Lokasi Lab</th>
                         <th>Auditor</th>
                         <th>Status Keselamatan</th>
                     </tr>
@@ -581,15 +595,20 @@ $recent_audits = $pdo->query($recent_sql)->fetchAll();
                         <td><?= htmlspecialchars($audit['product_name']) ?></td>
                         <td><?= htmlspecialchars($audit['auditor']) ?></td>
                         <td>
+                            <?php if ($audit['overall_result']): ?>
                             <span class="badge badge-<?= strtolower(str_replace(' ', '-', $audit['overall_result'])) ?>">
                                 <?= $audit['overall_result'] ?>
                             </span>
+                            <?php else: ?>
+                            <span class="badge badge-needs-improvement">-</span>
+                            <?php endif; ?>
                         </td>
                     </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>
         </div>
+        <?php endif; ?>
     </div>
     
     <script>
